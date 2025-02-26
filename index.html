@@ -21,10 +21,11 @@
             <li><a href="contact.html">Contact</a></li>
         </ul>
         
-        <div class="search-bar">
-            <input type="text" placeholder="Search...">
-            <button>Search</button>
-        </div>
+<div class="search-bar">
+    <input type="text" id="searchInput" placeholder="Search...">
+    <button onclick="searchRecipes()">Search</button>
+</div>
+
     </nav>
     
     
@@ -104,3 +105,21 @@
     </main>
 </body>
 </html>
+<script>
+document.getElementById("searchInput").addEventListener("keyup", searchRecipes);
+
+function searchRecipes() {
+    let input = document.getElementById("searchInput").value.toLowerCase();
+    let recipeCards = document.querySelectorAll(".recipe-card");
+
+    recipeCards.forEach(card => {
+        let title = card.querySelector("h3").innerText.toLowerCase();
+        if (title.includes(input)) {
+            card.style.display = "block";  // Show matching recipes
+        } else {
+            card.style.display = "none";   // Hide non-matching recipes
+        }
+    });
+}
+</script>
+
